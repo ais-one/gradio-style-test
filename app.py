@@ -1,24 +1,27 @@
 import gradio as gr
 
-# new_theme = gr.themes.Default().set(
-#     radius_size=gr.themes.sizes.radius_none
-# )
+## gr.themes.Default().dump(filename="theme.json") # dump the base theme to JSON
+
+css = """
+#component-2-button.selected { background-color: #CC8800 }
+#component-8-button.selected { background-color: #CC8800 }
+"""
 
 new_theme = gr.themes.Default(
     radius_size=gr.themes.sizes.radius_none, # seems to have effect
-    primary_hue="blue" # does not seem to have any effect
+    primary_hue="blue", # does not seem to have any effect
 ).set(
-    background_fill_primary = "pink", # have effect when browser in LIGHT mode
-    # background_fill_primary_dark # when browser is in DARK mode
+    background_fill_primary="lightgray", # have effect when browser in LIGHT mode
+    background_fill_primary_dark="darkgreen", # have effect when browser in DARK mode
 )
 
-# gr.themes.Default().dump(filename="theme.json")
 
-with gr.Blocks(theme=new_theme) as demo:
+with gr.Blocks(css=css, theme=new_theme) as demo:
     gr.Markdown("Flip text or image files using this demo.")
     with gr.Tab("Flip Text 1"):
         gr.Label("aaa")
         gr.Label("bbb")
+        gr.Textbox()
         gr.Button("Button One")
     with gr.Tab("Flip Image"):
         gr.Label("cc")

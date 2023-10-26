@@ -2,9 +2,14 @@ import gradio as gr
 
 ## gr.themes.Default().dump(filename="theme.json") # dump the base theme to JSON
 
+# css = """
+# #component-2-button.selected { background-color: #CC8800 }
+# #component-8-button.selected { background-color: #CC8800 }
+# """
+
 css = """
-#component-2-button.selected { background-color: #CC8800 }
-#component-8-button.selected { background-color: #CC8800 }
+#t1-button.selected { background-color: #CC8800 }
+#t2-button.selected { background-color: #CC8800 }
 """
 
 new_theme = gr.themes.Default(
@@ -18,12 +23,12 @@ new_theme = gr.themes.Default(
 
 with gr.Blocks(css=css, theme=new_theme) as demo:
     gr.Markdown("Flip text or image files using this demo.")
-    with gr.Tab("Flip Text 1"):
+    with gr.Tab("Flip Text 1", elem_id="t1"):
         gr.Label("aaa")
         gr.Label("bbb")
         gr.Textbox()
         gr.Button("Button One")
-    with gr.Tab("Flip Image"):
+    with gr.Tab("Flip Image", elem_id="t2"):
         gr.Label("cc")
         gr.Label("dd")
         gr.Label("ee")
